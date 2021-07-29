@@ -1,6 +1,6 @@
 {
-  "name": "react-select-utils",
-  "version": "0.1.2",
+  "name": "@brainylab/react-select-utils",
+  "version": "0.1.8",
   "author": "BrainyLab Developer <dev@brainylab.com.br>",
   "description": "React Select Utils",
   "license": "MIT",
@@ -8,6 +8,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "prepublish": "yarn build",
+    "publish": "npm publish",
     "precommit": "git add .",
     "commit": "cz",
     "postcommit": "git push"
