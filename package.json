@@ -1,5 +1,5 @@
 {
-  "name": "react-select-utils",
+  "name": "@brainylab/react-select-utils",
   "version": "1.0.1",
   "author": "BrainyLab Developer <dev@brainylab.com.br>",
   "description": "React Select Utils",
@@ -31,7 +31,9 @@
     "react selects",
     "selects",
     "select utils",
-    "utils"
+    "utils",
+    "javascript",
+    "typescript"
   ],
   "devDependencies": {
     "@types/jest": "^26.0.24",
