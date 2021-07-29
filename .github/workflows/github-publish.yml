@@ -1,0 +1,37 @@
+name: CI-Publish-Github
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - run: yarn install
+
+      # set up git since we will later push to the repo
+      - run: git config --global user.name "GitHub CD bot"
+      - run: git config --global user.email "dev@brainylab.com.br"
+
+      - run: npm version ${{ github.event.release.tag_name }}
+
+      - run: npm run build
+      - run: npm run test
+      - run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.GITHUB_TOKEN }}"
+      - run: npm publish --access public --tag ${{ github.event.release.target_commitish }}
+        env:
+          # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: git push
+        env:
+          # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
