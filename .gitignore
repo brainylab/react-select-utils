@@ -4,3 +4,5 @@ coverage
 
 .vscode
 .env
+
+yarn-error.log
