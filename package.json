@@ -1,6 +1,6 @@
 {
   "name": "@brainylab/react-select-utils",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "author": "BrainyLab Developer <dev@brainylab.com.br>",
   "description": "React Select Utils",
   "license": "MIT",
@@ -8,7 +8,6 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepublish": "yarn build",
     "publish": "npm publish",
     "precommit": "git add .",
     "commit": "cz",
@@ -36,6 +35,7 @@
   ],
   "devDependencies": {
     "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.6",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "jest": "^27.0.6",
