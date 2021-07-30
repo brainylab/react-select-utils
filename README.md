@@ -1,4 +1,6 @@
 <img src="https://img.shields.io/npm/v/@brainylab/react-select-utils"/>
+<img src="https://github.com/brainylab/react-select-utils/actions/workflows/npm-publish.yml/badge.svg"/>
+
 
 # React Select Utils
 Package with utilities for the react-select package
