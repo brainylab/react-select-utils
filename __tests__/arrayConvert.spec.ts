@@ -29,6 +29,13 @@ describe("ArrayConvert", () => {
       arrayValue: "os",
     });
 
+    const newArrayConcat = arrayConvert({
+      array,
+      arrayLabel: "id",
+      arrayLabelConcat: "device",
+      arrayValue: "os",
+    });
+
     const newArrayWithFirstObject = arrayConvert({
       firstObject: firstObject,
       array,
@@ -44,6 +51,9 @@ describe("ArrayConvert", () => {
     });
 
     expect(newArray).toEqual(
+      expect.arrayContaining([] as Array<{ labe: string; value: string }>)
+    );
+    expect(newArrayConcat).toEqual(
       expect.arrayContaining([] as Array<{ labe: string; value: string }>)
     );
     expect(newArrayWithFirstObject).toEqual(
