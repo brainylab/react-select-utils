@@ -27,7 +27,7 @@ jobs:
       - run: npm run build
       - run: npm run test
       - run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
-      - run: npm publish --access public
+      - run: npm publish --access public --allow-same-version
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: git push
