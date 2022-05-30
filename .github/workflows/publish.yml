@@ -7,7 +7,6 @@ on:
 jobs:
   publish-grp:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -36,7 +35,7 @@ jobs:
   
   publish-npm:
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - uses: actions/checkout@v2
 
       - name: NodeJs Environment
@@ -61,7 +60,7 @@ jobs:
 
   update-version:
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.release.target_commitish }}
