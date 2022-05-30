@@ -1,0 +1,75 @@
+name: CI - Publish Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: NodeJs Environment
+        uses: actions/setup-node@v3.2.0
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build Package
+        run: npm run build
+
+      - name: Test Package
+        run: npm run test
+
+      - name: Github package registry authentication
+        run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+
+      - name: Publish Packages on NPM
+      - run: npm publish
+  
+  publish-grp:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: NodeJs Environment
+        uses: actions/setup-node@v3.2.0
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build Package
+        run: npm run build
+
+      - name: Test Package
+        run: npm run test
+
+      - name: Github package registry authentication
+        run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+
+      - name: Publish Packages on NPM
+        run: npm publish
+
+  update-version:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+
+      # set up git since we will later push to the repo
+      - run: git config --global user.name "GitHub CD bot"
+      - run: git config --global user.email "dev@brainylab.com.br"
+
+      - run: npm version ${{ github.event.release.tag_name }}
+
+      - run: git push
+        env:
+          # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,11 +1,11 @@
-export interface ReturnArray {
+export interface IReturnArray {
   label: string;
   value: string;
 }
 
 type T2<T> = keyof T;
 
-export interface ArrayConvertProps<T> {
+export interface IArrayConvertProps<T> {
   firstObject?: {
     label: string;
     value: string;
@@ -16,14 +16,14 @@ export interface ArrayConvertProps<T> {
   arrayValue: T2<T>;
 }
 
-export function arrayConvert<T = any>({
+export function arrayConvert<T = unknown>({
   firstObject,
   array,
   arrayLabel,
   arrayLabelConcat,
   arrayValue,
-}: ArrayConvertProps<T>): Array<ReturnArray> {
-  const arrayConverted: ReturnArray[] = [];
+}: IArrayConvertProps<T>): Array<IReturnArray> {
+  const arrayConverted: IReturnArray[] = [];
 
   /**
    * Add initial object in array

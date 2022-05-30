@@ -36,6 +36,7 @@
     "typescript"
   ],
   "devDependencies": {
+    "@brainylab/eslint-config-base": "^0.2.21",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.6",
     "commitizen": "^4.2.4",
