@@ -35,6 +35,7 @@ jobs:
   
   publish-npm:
     runs-on: ubuntu-latest
+    needs: [publish-grp]
     steps:
       - uses: actions/checkout@v2
 
@@ -56,10 +57,13 @@ jobs:
         run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
 
       - name: Publish Packages on NPM
-        run: npm publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   update-version:
     runs-on: ubuntu-latest
+    needs: [publish-npm]
     steps:
       - uses: actions/checkout@v2
         with:
