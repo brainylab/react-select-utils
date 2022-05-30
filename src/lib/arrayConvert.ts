@@ -23,13 +23,9 @@ export function arrayConvert<T = unknown>({
   arrayLabelConcat,
   arrayValue,
 }: IArrayConvertProps<T>): Array<IReturnArray> {
-  const arrayConverted: IReturnArray[] = [];
-
   /**
-   * Add initial object in array
+   * convert array
    */
-  if (firstObject) arrayConverted.unshift(firstObject);
-
   const converted = array.map((item) => {
     const label = arrayLabelConcat
       ? `${item[arrayLabel]} - ${item[arrayLabelConcat]}`
@@ -41,7 +37,10 @@ export function arrayConvert<T = unknown>({
     };
   });
 
-  arrayConverted.push(...converted);
+  /**
+   * Add initial object in array
+   */
+  if (firstObject) converted.unshift(firstObject);
 
-  return arrayConverted;
+  return converted;
 }
