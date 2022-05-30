@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  publish-npm:
+  publish-grp:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,13 +25,16 @@ jobs:
       - name: Test Package
         run: npm run test
 
+      - name: Set package registry GRP
+        run: npm config set registry https://npm.pkg.github.com
+
       - name: Github package registry authentication
-        run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.PUBLISH_TOKEN_GRP }}
 
       - name: Publish Packages on NPM
       - run: npm publish
   
-  publish-grp:
+  publish-npm:
     runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
