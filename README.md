@@ -1,5 +1,5 @@
 <img src="https://img.shields.io/npm/v/@brainylab/react-select-utils"/>
-<img src="https://github.com/brainylab/react-select-utils/actions/workflows/npm-publish.yml/badge.svg"/>
+[![CI - Publish Package](https://github.com/brainylab/react-select-utils/actions/workflows/publish.yml/badge.svg)](https://github.com/brainylab/react-select-utils/actions/workflows/publish.yml)
 
 
 # React Select Utils
