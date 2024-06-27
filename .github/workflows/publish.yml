@@ -1,26 +1,39 @@
-name: Publish package to GitHub Packages
+name: CI - Publish Package
+
 on:
   push:
     branches:
       - master
-jobs:
-  build:
+
+  publish-grp:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - uses: actions/checkout@v4
-      # Setup .npmrc file to publish to GitHub Packages
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+
+      - name: NodeJs Environment
+        uses: actions/setup-node@v3.2.0
         with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@brainylab'
-      - name: Install dependencies
-        run: yarn && yarn build
-      - name: Publish package
-        run: yarn publish --access public
+          node-version: 16
+
+      - name: Get Package Version
+        run: npm version ${{ github.event.release.tag_name }}
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build Package
+        run: npm run build
+
+      - name: Test Package
+        run: npm run test
+
+      - name: Set package registry GRP
+        run: npm config set registry https://npm.pkg.github.com
+
+      - name: Github package registry authentication
+        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GHP_PACKAGES_TOKEN }}
+
+      - name: Publish Packages on NPM
+        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
