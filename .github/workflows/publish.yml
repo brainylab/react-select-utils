@@ -19,7 +19,7 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@brainylab'
       - name: Install dependencies
-        run: yarn
+        run: yarn && yarn build
       - name: Publish package
         run: yarn publish --access public
         env:
