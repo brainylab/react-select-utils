@@ -52,7 +52,7 @@ jobs:
         run: npm config set registry https://npm.pkg.github.com
 
       - name: Github package registry authentication
-        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.PUBLISH_TOKEN_GRP }}
+        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GHP_PACKAGES_TOKEN }}
 
       - name: Publish Packages on NPM
         run: npm publish
