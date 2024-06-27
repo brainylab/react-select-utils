@@ -9,15 +9,12 @@ jobs:
   publish-grp:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: NodeJs Environment
-        uses: actions/setup-node@v3.2.0
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
-
-      - name: Get Package Version
-        run: npm version ${{ github.event.release.tag_name }}
+          node-version: 20
 
       - name: Install Dependencies
         run: yarn install
@@ -31,8 +28,8 @@ jobs:
       - name: Set package registry GRP
         run: npm config set registry https://npm.pkg.github.com
 
-      - name: Github package registry authentication
-        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GHP_PACKAGES_TOKEN }}
+      - name: github package registry authentication
+        run: npm set //npm.pkg.github.com/:_authToken=${{ secrets.PUBLISH_TOKEN_GRP }}
 
       - name: Publish Packages on NPM
         run: npm publish
