@@ -5,6 +5,7 @@ on:
     branches:
       - master
 
+jobs:
   publish-grp:
     runs-on: ubuntu-latest
     steps:
