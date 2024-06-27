@@ -1,6 +1,6 @@
 {
   "name": "@brainylab/react-select-utils",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "author": "BrainyLab Developer <dev@brainylab.com.br>",
   "description": "React Select Utils",
   "license": "MIT",
@@ -36,7 +36,6 @@
     "typescript"
   ],
   "dependencies": {
-    "@brainylab/eslint-config-base": "^0.2.21",
     "@types/jest": "^27.5.1",
     "@types/node": "^17.0.36",
     "commitizen": "^4.2.4",
@@ -51,5 +50,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
